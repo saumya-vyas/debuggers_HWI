@@ -1,0 +1,37 @@
+.farm-field-3d {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  background: #000000;
+}
+
+/* 3D Canvas container */
+.farm-field-3d canvas {
+  border-radius: 16px;
+  background: #000000;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .farm-field-3d {
+    height: 60vh;
+  }
+}
+
+/* Hover effects for interactive elements */
+.farm-field-3d canvas:hover {
+  cursor: grab;
+}
+
+.farm-field-3d canvas:active {
+  cursor: grabbing;
+}
+
+/* Accessibility improvements */
+.farm-field-3d:focus-within {
+  outline: 2px solid #4ade80;
+  outline-offset: 2px;
+}
