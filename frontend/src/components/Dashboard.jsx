@@ -1,38 +1,7 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Dashboard.css'
 
-const Dashboard = ({ crops, activities, onAddCrop, onAddActivity }) => {
-  const [showNewCropForm, setShowNewCropForm] = useState(false)
-  const [showNewActivityForm, setShowNewActivityForm] = useState(false)
-  const [newCrop, setNewCrop] = useState({
-    farmName: '',
-    location: '',
-    cropType: '',
-    sowingDate: ''
-  })
-  const [newActivity, setNewActivity] = useState({
-    date: '',
-    activity: '',
-    farmName: ''
-  })
-
-  const handleCropSubmit = (e) => {
-    e.preventDefault()
-    onAddCrop(newCrop)
-    setNewCrop({ farmName: '', location: '', cropType: '', sowingDate: '' })
-    setShowNewCropForm(false)
-  }
-
-  const handleActivitySubmit = (e) => {
-    e.preventDefault()
-    onAddActivity(newActivity)
-    setNewActivity({ date: '', activity: '', farmName: '' })
-    setShowNewActivityForm(false)
-  }
-
-  const today = new Date().toISOString().split('T')[0]
-
+const Dashboard = ({ crops, activities }) => {
   return (
     <div className="dashboard">
       <div className="dashboard-header">
@@ -45,129 +14,31 @@ const Dashboard = ({ crops, activities, onAddCrop, onAddActivity }) => {
         <div className="dashboard-card">
           <div className="card-header">
             <h3>🌱 Add New Crop</h3>
-            <button 
-              className="toggle-btn"
-              onClick={() => setShowNewCropForm(!showNewCropForm)}
-            >
-              {showNewCropForm ? 'Cancel' : 'Add Crop'}
-            </button>
+            <div className="card-actions">
+              <Link to="/add-crop" className="toggle-btn">
+                Add Crop
+              </Link>
+            </div>
           </div>
-          
-          {showNewCropForm && (
-            <form onSubmit={handleCropSubmit} className="crop-form">
-              <div className="form-group">
-                <label htmlFor="farmName">Farm Name:</label>
-                <input
-                  type="text"
-                  id="farmName"
-                  value={newCrop.farmName}
-                  onChange={(e) => setNewCrop({...newCrop, farmName: e.target.value})}
-                  required
-                  placeholder="Enter farm name"
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="location">Location:</label>
-                <input
-                  type="text"
-                  id="location"
-                  value={newCrop.location}
-                  onChange={(e) => setNewCrop({...newCrop, location: e.target.value})}
-                  required
-                  placeholder="Enter farm location"
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="cropType">Crop Type:</label>
-                <input
-                  type="text"
-                  id="cropType"
-                  value={newCrop.cropType}
-                  onChange={(e) => setNewCrop({...newCrop, cropType: e.target.value})}
-                  required
-                  placeholder="Enter crop type"
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="sowingDate">Date of Sowing:</label>
-                <input
-                  type="date"
-                  id="sowingDate"
-                  value={newCrop.sowingDate}
-                  onChange={(e) => setNewCrop({...newCrop, sowingDate: e.target.value})}
-                  required
-                />
-              </div>
-              
-              <button type="submit" className="submit-btn">Add Crop</button>
-            </form>
-          )}
+          <p className="card-description">Add a new crop to your farming portfolio</p>
         </div>
 
         {/* 7-Day Activity Section */}
         <div className="dashboard-card">
           <div className="card-header">
             <h3>📅 7-Day Activity</h3>
-            <button 
-              className="toggle-btn"
-              onClick={() => setShowNewActivityForm(!showNewActivityForm)}
-            >
-              {showNewActivityForm ? 'Cancel' : 'Add Activity'}
-            </button>
+            <div className="card-actions">
+              <Link to="/add-activity" className="toggle-btn">
+                Add Activity
+              </Link>
+              <Link to="/activities" className="toggle-btn secondary">
+                View All Activities
+              </Link>
+            </div>
           </div>
           
-          {showNewActivityForm && (
-            <form onSubmit={handleActivitySubmit} className="activity-form">
-              <div className="form-group">
-                <label htmlFor="activityDate">Date:</label>
-                <input
-                  type="date"
-                  id="activityDate"
-                  value={newActivity.date}
-                  onChange={(e) => setNewActivity({...newActivity, date: e.target.value})}
-                  required
-                  max={today}
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="activityDescription">Activity:</label>
-                <textarea
-                  id="activityDescription"
-                  value={newActivity.activity}
-                  onChange={(e) => setNewActivity({...newActivity, activity: e.target.value})}
-                  required
-                  placeholder="Describe the activity"
-                  rows="3"
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="activityFarm">Farm Name:</label>
-                <select
-                  id="activityFarm"
-                  value={newActivity.farmName}
-                  onChange={(e) => setNewActivity({...newActivity, farmName: e.target.value})}
-                  required
-                >
-                  <option value="">Select a farm</option>
-                  {crops.map(crop => (
-                    <option key={crop.id} value={crop.farmName}>
-                      {crop.farmName}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              
-              <button type="submit" className="submit-btn">Add Activity</button>
-            </form>
-          )}
-          
           <div className="activities-list">
-            {activities.map(activity => (
+            {activities.slice(0, 3).map(activity => (
               <div key={activity.id} className="activity-item">
                 <div className="activity-date">{activity.date}</div>
                 <div className="activity-content">
@@ -176,12 +47,20 @@ const Dashboard = ({ crops, activities, onAddCrop, onAddActivity }) => {
                 </div>
               </div>
             ))}
+            {activities.length === 0 && (
+              <p className="no-activities">No activities recorded yet</p>
+            )}
           </div>
         </div>
 
         {/* Quick Stats */}
         <div className="dashboard-card">
-          <h3>📊 Quick Stats</h3>
+          <div className="card-header">
+            <h3>📊 Quick Stats</h3>
+            <Link to="/stats" className="toggle-btn">
+              View Details
+            </Link>
+          </div>
           <div className="stats-grid">
             <div className="stat-item">
               <div className="stat-number">{crops.length}</div>

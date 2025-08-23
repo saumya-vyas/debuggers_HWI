@@ -3,26 +3,26 @@
   color: white;
   background: #000000;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .farms-header-3d {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   color: white;
 }
 
 .farms-header-3d h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   color: #ffffff;
 }
 
 .farms-header-3d p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   opacity: 0.9;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   color: #e5e7eb;
 }
 
@@ -67,78 +67,78 @@
 /* 3D Container */
 .farms-3d-container {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background: #000000;
 }
 
 /* Legend for 3D View */
 .legend-3d {
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   border: 2px solid #2c5530;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  z-index: 100;
-  color: white;
-}
-
-.legend-3d h4 {
-  margin: 0 0 0.75rem 0;
-  color: #4ade80;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.legend-color {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  border: 1px solid #d1d5db;
-}
-
-.legend-text {
-  font-size: 0.8rem;
-  color: #e5e7eb;
-}
-
-/* Controls Overlay for 3D View */
-.controls-overlay-3d {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  border: 2px solid #2c5530;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 0.75rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   z-index: 100;
   color: white;
 }
 
-.controls-overlay-3d h4 {
+.legend-3d h4 {
   margin: 0 0 0.5rem 0;
   color: #4ade80;
   font-size: 0.9rem;
   font-weight: 600;
 }
 
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid #d1d5db;
+}
+
+.legend-text {
+  font-size: 0.75rem;
+  color: #e5e7eb;
+}
+
+/* Controls Overlay for 3D View */
+.controls-overlay-3d {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid #2c5530;
+  border-radius: 8px;
+  padding: 0.6rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  color: white;
+}
+
+.controls-overlay-3d h4 {
+  margin: 0 0 0.4rem 0;
+  color: #4ade80;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 .controls-overlay-3d p {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #d1d5db;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .controls-overlay-3d strong {
@@ -148,37 +148,37 @@
 /* Farms Stats for 3D View */
 .farms-stats-3d {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .stat-card-3d {
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   border: 2px solid #2c5530;
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: 8px;
+  padding: 1rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   transition: all 0.3s ease;
   color: white;
 }
 
 .stat-card-3d:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
   border-color: #4ade80;
 }
 
 .stat-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
   background: #2c5530;
   color: white;
-  width: 60px;
-  height: 60px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -191,14 +191,14 @@
 }
 
 .stat-number {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #4ade80;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .stat-label {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #d1d5db;
   font-weight: 500;
 }
@@ -206,11 +206,11 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .my-farms-3d {
-    padding: 1rem;
+    padding: 0.5rem;
   }
   
   .farms-header-3d h2 {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   
   .add-new-crop-btn,
@@ -221,17 +221,17 @@
   
   .farms-stats-3d {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.75rem;
   }
   
   .stat-card-3d {
-    padding: 1rem;
+    padding: 0.75rem;
   }
   
   .legend-3d,
   .controls-overlay-3d {
     position: relative;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     left: auto;
     right: auto;
     bottom: auto;

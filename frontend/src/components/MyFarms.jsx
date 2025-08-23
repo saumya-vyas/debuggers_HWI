@@ -11,9 +11,6 @@ const MyFarms = ({ crops }) => {
         <div className="farms-header-3d">
           <h2>My Farms</h2>
           <p>You haven't added any crops yet. Start by adding your first crop!</p>
-          <Link to="/" className="add-first-crop-btn">
-            Add Your First Crop
-          </Link>
         </div>
       </div>
     )
@@ -28,9 +25,6 @@ const MyFarms = ({ crops }) => {
       <div className="farms-header-3d">
         <h2>My Farms</h2>
         <p>Explore your farms in an immersive 3D world</p>
-        <Link to="/" className="add-new-crop-btn">
-          + Add New Crop
-        </Link>
       </div>
 
       <div className="farms-3d-container">
