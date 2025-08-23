@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 // Use Vite environment variables instead of Node.js process.env
-const apiKey = import.meta.env.VITE_GOOGLE_API_KEY || "AIzaSyDmYGrWajSRWnFVYz3QMhC0sd6kQbGQIM4";
+const apiKey = import.meta.env.VITE_GOOGLE_API_KEY || "API_KEY";
 
 if (!apiKey) {
   console.error("Error: VITE_GOOGLE_API_KEY environment variable is not set");
