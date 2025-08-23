@@ -21,6 +21,17 @@ let crops = [
     nutrientHealth: "Excellent",
     marketTrend: "Stable",
     improvement: "Current practices are optimal"
+  },
+  {
+    id: 3,
+    farmName: "Golden Harvest",
+    location: "Iowa, USA",
+    cropType: "Soybeans",
+    sowingDate: "2024-03-20",
+    weatherTemperature: "18°C",
+    nutrientHealth: "Fair",
+    marketTrend: "Rising",
+    improvement: "Increase irrigation frequency and soil testing recommended"
   }
 ];
 

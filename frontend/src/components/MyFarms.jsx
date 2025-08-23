@@ -1,9 +1,20 @@
 import { useNavigate, Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import FarmField3D from './FarmField3D'
 import './MyFarms.css'
 
 const MyFarms = ({ crops }) => {
   const navigate = useNavigate()
+
+  // Add body class to disable scrolling when MyFarms is active
+  useEffect(() => {
+    document.body.classList.add('myfarms-active')
+    
+    // Cleanup: remove class when component unmounts
+    return () => {
+      document.body.classList.remove('myfarms-active')
+    }
+  }, [])
 
   if (crops.length === 0) {
     return (
@@ -23,19 +34,23 @@ const MyFarms = ({ crops }) => {
     navigate(`/farm/${farmId}`)
   }
 
+  const displayFarms = crops.slice(0, 9) // Only show first 9 farms in 3x3 grid
+  const hasMoreFarms = crops.length > 9
+
   return (
     <div className="my-farms-3d">
-      <div className="farms-header-3d">
-        <h2>My Farms</h2>
-        <p>Explore your farms in an immersive 3D world</p>
-        <Link to="/" className="add-new-crop-btn">
-          + Add New Crop
-        </Link>
-      </div>
+     
+
+      {/* Grid limit warning */}
+      {hasMoreFarms && (
+        <div className="grid-limit-warning">
+          <p>⚠️ Showing first 9 farms in 3x3 grid. You have {crops.length} total farms.</p>
+        </div>
+      )}
 
       <div className="farms-3d-container">
         <FarmField3D 
-          farms={crops} 
+          farms={displayFarms} 
           onFarmClick={handleFarmClick}
         />
         
@@ -60,14 +75,7 @@ const MyFarms = ({ crops }) => {
           </div>
         </div>
 
-        {/* 3D Controls Info */}
-        <div className="controls-overlay-3d">
-          <h4>🎮 Controls</h4>
-          <p><strong>Mouse:</strong> Click & drag to rotate</p>
-          <p><strong>Scroll:</strong> Zoom in/out</p>
-          <p><strong>Click:</strong> Select farm</p>
-          <p><strong>Hover:</strong> Fields lift up</p>
-        </div>
+        
       </div>
 
       {/* Quick Stats */}
