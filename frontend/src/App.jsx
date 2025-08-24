@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import WeatherDemo from './weather/WeatherDemo'
 import Dashboard from './components/Dashboard'
 import MyFarms from './components/MyFarms'
 import FarmDetails from './components/FarmDetails'
@@ -77,6 +78,7 @@ function App() {
             />
           </Routes>
         </main>
+        <WeatherDemo />
         
         {/* Global Footer - Available across all components */}
         <footer className="app-footer">

@@ -1,5 +1,5 @@
 // OpenWeather API Configuration
-const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY || "WEATHER_API_KEY";
+const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY || "3588ce0299d2e7453ed753fc01bff253";
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
 // Weather data storage variables
