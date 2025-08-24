@@ -22,13 +22,15 @@ You will be given comprehensive data including:
 - Management practices (fertilizer, irrigation, pest control history)
 
 Your task:
-1. Calculate the **growth stage** of the crop based on crop type and seeding date (consider crop-specific growth cycles)
+1. Calculate the growth stage of the crop based on crop type and seeding date (consider crop-specific growth cycles)
 2. Analyze the NDVI value to assess crop health and stress levels
 3. Evaluate soil conditions and their impact on crop growth
 4. Analyze weather patterns and their implications for farming decisions
-5. Combine all data to generate **comprehensive, stage-specific advice**
+5. Combine all data to generate comprehensive, stage-specific advice
 6. Provide specific recommendations for: irrigation scheduling, fertilizer application, pest/disease management, and harvesting timing
 7. Consider crop rotation, field history, and management practices in your analysis
+
+IMPORTANT: Generate responses in clean, professional paragraph format without emojis, symbols, or excessive formatting. Focus on clear, actionable advice that farmers can easily understand and implement.
 
 Return ONLY a JSON object with the following structure:
 {
@@ -43,38 +45,27 @@ Return ONLY a JSON object with the following structure:
   "weather_impact": "string",
   "critical_alerts": "string",
   "recommendations": ["array of strings"],
-  "next_actions": ["array of strings"]
+  "next_actions": ["array of strings"],
+  "detailed_advice": "string"
 }
 
-Example JSON structure:
-{
-  "farmer_name": "Ramesh Kumar",
-  "crop_type": "wheat",
-  "seeding_date": "2025-01-15",
-  "days_since_sowing": 5,
-  "growth_stage": "Germination to Early Seedling Stage",
-  "ndvi_value": 0.38,
-  "crop_health": "Moderate Stress - Requires Attention",
-  "soil_analysis": "Good pH (6.8), moderate moisture (45%), needs nitrogen boost",
-  "weather_impact": "Rain expected in 2 days, good for germination but monitor drainage",
-  "critical_alerts": "Low soil moisture may affect germination, consider light irrigation",
-  "recommendations": [
-    "Your wheat is in critical germination stage with moderate stress due to low soil moisture.",
-    "Light irrigation needed today to ensure proper germination before expected rainfall.",
-    "Apply starter fertilizer (NPK 20:20:20) after rainfall to boost early growth.",
-    "Monitor for damping-off disease due to expected high humidity in coming days.",
-    "Prepare for post-rain weed control as moisture will promote weed growth.",
-    "Ensure proper field drainage to prevent waterlogging during heavy rainfall."
-  ],
-  "next_actions": [
-    "Immediate: Light irrigation today",
-    "Within 2 days: Monitor rainfall and drainage",
-    "After rain: Apply starter fertilizer",
-    "Weekly: Monitor for pests and diseases"
-  ]
-}
+The "detailed_advice" field should contain a comprehensive, well-structured response in paragraph format that:
+- Explains the current crop situation clearly
+- Provides actionable recommendations
+- Addresses any critical issues
+- Gives practical next steps
+- Uses simple, farmer-friendly language
+- Avoids technical jargon unless necessary
+- Focuses on what the farmer needs to do right now
 
-Now analyze this comprehensive farmer data and return ONLY the JSON object:`;
+Example detailed_advice format:
+"Your wheat crop is currently in the vegetative growth stage, showing moderate stress levels with an NDVI value of 0.38. The crop has been growing for 35 days since sowing and is developing tillers and leaves. Current soil conditions show good pH levels at 6.8, but moisture is below optimal at 45%. Weather forecasts indicate light rain expected in the next 2 days, which will help with moisture levels but may require attention to drainage.
+
+Based on the current conditions, your immediate priority should be to provide light irrigation today to ensure proper growth before the expected rainfall. The moderate stress levels suggest the crop could benefit from a nitrogen boost, so consider applying starter fertilizer (NPK 20:20:20) after the rainfall to support tiller development. Monitor for any signs of pest infestation, particularly aphids and armyworms, which are common during this growth stage.
+
+In the coming week, focus on maintaining adequate soil moisture and monitoring for disease development, especially with the expected increase in humidity. Prepare for post-rain weed control as the moisture will promote weed growth. Ensure your field has proper drainage to prevent waterlogging during heavy rainfall periods."
+
+Now analyze this comprehensive farmer data and return ONLY the JSON object with the detailed_advice field containing practical, actionable farming advice:`;
 
 async function analyzeFarmerData(farmerData) {
   try {
@@ -113,11 +104,28 @@ function setResponse(newResponse) {
   jsonData = extractJSONFromResponse(newResponse);
 }
 
+// Function to clean AI responses and ensure proper formatting
+function cleanAIResponse(response) {
+  if (!response) return '';
+  
+  // Remove excessive formatting and normalize text
+  let cleaned = response
+    .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold formatting
+    .replace(/\n{3,}/g, '\n\n') // Reduce excessive line breaks
+    .replace(/^\s+|\s+$/g, '') // Trim whitespace
+    .replace(/\s+/g, ' '); // Normalize spaces
+  
+  return cleaned;
+}
+
 // Function to extract JSON data from AI response
 function extractJSONFromResponse(aiResponse) {
   try {
+    // Clean the response first
+    const cleanedResponse = cleanAIResponse(aiResponse);
+    
     // Since AI now returns only JSON, try to parse the entire response
-    const parsed = JSON.parse(aiResponse.trim());
+    const parsed = JSON.parse(cleanedResponse.trim());
     console.log('✅ Successfully parsed JSON data:', parsed);
     return parsed;
   } catch (error) {
@@ -127,7 +135,8 @@ function extractJSONFromResponse(aiResponse) {
     try {
       const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
-        const parsed = JSON.parse(jsonMatch[0]);
+        const cleaned = cleanAIResponse(jsonMatch[0]);
+        const parsed = JSON.parse(cleaned);
         console.log('✅ Found and parsed JSON data using fallback:', parsed);
         return parsed;
       }
@@ -188,6 +197,7 @@ export {
   getCropHealth,
   getRecommendations,
   getNextActions,
-  getCriticalAlerts
+  getCriticalAlerts,
+  cleanAIResponse
 };
 export default analyzeFarmerData;
