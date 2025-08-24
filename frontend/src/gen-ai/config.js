@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Use Vite environment variables instead of Node.js process.env
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY || "AIzaSyDmYGrWajSRWnFVYz3QMhC0sd6kQbGQIM4";
@@ -7,7 +7,7 @@ if (!apiKey) {
   console.error("Error: VITE_GOOGLE_API_KEY environment variable is not set");
 }
 
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenerativeAI({ apiKey });
 
 // Agricultural Expert AI System
 const agriculturalExpertPrompt = `You are an agricultural expert AI assisting farmers.  

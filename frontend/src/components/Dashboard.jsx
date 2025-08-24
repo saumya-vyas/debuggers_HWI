@@ -16,12 +16,15 @@ const Dashboard = ({ crops, activities, onAddCrop, onAddActivity }) => {
     activity: '',
     farmName: ''
   })
+  const [showSatelliteImage, setShowSatelliteImage] = useState(false)
+  const [locationTimeout, setLocationTimeout] = useState(null)
 
   const handleCropSubmit = (e) => {
     e.preventDefault()
     onAddCrop(newCrop)
     setNewCrop({ farmName: '', location: '', cropType: '', sowingDate: '' })
     setShowNewCropForm(false)
+    setShowSatelliteImage(false) // Reset image visibility on form submission
   }
 
   const handleActivitySubmit = (e) => {
@@ -29,6 +32,26 @@ const Dashboard = ({ crops, activities, onAddCrop, onAddActivity }) => {
     onAddActivity(newActivity)
     setNewActivity({ date: '', activity: '', farmName: '' })
     setShowNewActivityForm(false)
+  }
+
+  const handleLocationChange = (e) => {
+    const locationValue = e.target.value
+    setNewCrop({...newCrop, location: locationValue})
+
+    // Clear any existing timeout
+    if (locationTimeout) {
+      clearTimeout(locationTimeout)
+    }
+
+    // Set a new timeout to show the image after 2 seconds if location is not empty
+    if (locationValue) {
+      const timeout = setTimeout(() => {
+        setShowSatelliteImage(true)
+      }, 2000)
+      setLocationTimeout(timeout)
+    } else {
+      setShowSatelliteImage(false)
+    }
   }
 
   const today = new Date().toISOString().split('T')[0]
@@ -80,11 +103,17 @@ const Dashboard = ({ crops, activities, onAddCrop, onAddActivity }) => {
                 type="text"
                 id="location"
                 value={newCrop.location}
-                onChange={(e) => setNewCrop({...newCrop, location: e.target.value})}
+                onChange={handleLocationChange}
                 required
                 placeholder="Enter farm location"
               />
             </div>
+            {showSatelliteImage && newCrop.location && (
+              <div className="satellite-image-container">
+                <img src="/satellite.jpeg" alt="Satellite view of farm location" className="satellite-image" />
+                <p className="image-caption">Satellite view for {newCrop.location}</p>
+              </div>
+            )}
             
             <div className="form-group">
               <label htmlFor="cropType">Crop Type:</label>

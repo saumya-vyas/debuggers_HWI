@@ -16,7 +16,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: transparent; /* Changed to transparent to allow Canvas background to show */
   min-height: 100vh;
-  color: #333;
+  color: var(--text-primary);
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -32,20 +32,20 @@ body {
 
 /* Navigation */
 .navbar {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--surface-background);
   backdrop-filter: blur(10px);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .nav-brand h1 {
-  color: #2c5530;
+  color: var(--primary-color);
   font-size: 1.8rem;
   font-weight: 700;
 }
@@ -57,7 +57,7 @@ body {
 
 .nav-link {
   text-decoration: none;
-  color: #2c5530;
+  color: var(--text-primary);
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -65,8 +65,8 @@ body {
 }
 
 .nav-link:hover {
-  background: #2c5530;
-  color: white;
+  background: var(--primary-color);
+  color: var(--surface-background);
   transform: translateY(-2px);
 }
 
@@ -81,11 +81,11 @@ body {
 
 /* Footer Styles */
 .app-footer {
-  background: linear-gradient(135deg, #2c5530, #1a3d1f);
-  color: white;
+  background: linear-gradient(135deg, var(--primary-color), #4CAF50); /* Blend with a complementary green */
+  color: var(--surface-background);
   padding: 3rem 2rem 1rem;
   margin-top: auto;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .footer-content {
@@ -99,16 +99,16 @@ body {
 }
 
 .footer-section h4 {
-  color: #ffffff;
+  color: var(--surface-background);
   margin-bottom: 1rem;
   font-size: 1.2rem;
   font-weight: 600;
-  border-bottom: 2px solid #4CAF50;
+  border-bottom: 2px solid var(--secondary-color);
   padding-bottom: 0.5rem;
 }
 
 .footer-section p {
-  color: #e0e0e0;
+  color: var(--background-light);
   font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 0.5rem;
@@ -121,7 +121,7 @@ body {
 }
 
 .footer-section li {
-  color: #e0e0e0;
+  color: var(--background-light);
   font-size: 0.9rem;
   line-height: 1.8;
   margin-bottom: 0.5rem;
@@ -130,24 +130,24 @@ body {
 }
 
 .footer-section li:hover {
-  color: #4CAF50;
+  color: var(--secondary-color);
 }
 
 .footer-section li:before {
   content: "•";
-  color: #4CAF50;
+  color: var(--secondary-color);
   font-weight: bold;
   margin-right: 0.5rem;
 }
 
 .footer-link {
-  color: #e0e0e0;
+  color: var(--background-light);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #4CAF50;
+  color: var(--secondary-color);
   text-decoration: underline;
 }
 
@@ -167,47 +167,50 @@ body {
 }
 
 .footer-copyright p {
-  color: #b0b0b0;
-  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem; /* Slightly larger font size */
   margin: 0.2rem 0;
 }
 
 .footer-social h5 {
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  color: var(--surface-background);
+  margin-bottom: 0.75rem; /* Increased margin for better spacing */
+  font-size: 1rem;
 }
 
 .social-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem; /* Increased gap for better spacing */
 }
 
 .social-link {
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: 1.6rem; /* Slightly larger social icons */
   text-decoration: none;
-  transition: transform 0.3s ease;
+  color: var(--surface-background); /* White for social icons */
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .social-link:hover {
   transform: scale(1.2);
+  color: var(--secondary-color); /* Amber on hover */
 }
 
 .footer-legal {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.75rem; /* Increased gap for legal links */
 }
 
 .legal-link {
-  color: #b0b0b0;
+  color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.85rem; /* Slightly larger font size */
   transition: color 0.3s ease;
 }
 
 .legal-link:hover {
-  color: #4CAF50;
+  color: var(--secondary-color);
+  text-decoration: underline;
 }
 
 /* Responsive design */

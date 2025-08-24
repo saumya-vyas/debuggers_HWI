@@ -1,6 +1,6 @@
 /* Full 3D World MyFarms Page - No Scrolling */
 .my-farms-3d {
-  color: #333;
+  color: var(--text-primary);
   background: transparent; /* Changed background to transparent */
   height: 100vh;
   width: 100vw;
@@ -25,27 +25,27 @@ body.myfarms-active {
   transform: translateX(-50%);
   text-align: center;
   z-index: 99; /* Adjusted z-index */
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface-background);
   backdrop-filter: blur(10px);
-  border: 2px solid #2c5530;
+  border: 2px solid var(--primary-color);
   border-radius: 12px;
   padding: 0.75rem 1.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   max-width: 90vw;
 }
 
 .farms-header-3d h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  color: #2c5530;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  color: var(--primary-color);
 }
 
 .farms-header-3d p {
   font-size: 1rem;
   opacity: 0.9;
   margin-bottom: 0.75rem;
-  color: #4b5563;
+  color: var(--text-secondary);
 }
 
 /* Grid limit warning */
@@ -54,14 +54,14 @@ body.myfarms-active {
   top: 6rem;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(239, 68, 68, 0.9);
+  background: var(--warning-color); /* Use warning color from new palette */
   backdrop-filter: blur(10px);
-  border: 2px solid #dc2626;
+  border: 2px solid var(--warning-color); /* Use warning color for border */
   border-radius: 8px;
   padding: 0.5rem 1rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   z-index: 99; /* Adjusted z-index */
-  color: white;
+  color: var(--surface-background);
   text-align: center;
   max-width: 90vw;
 }
@@ -70,13 +70,13 @@ body.myfarms-active {
   margin: 0;
   font-size: 0.8rem;
   font-weight: 600;
-  color: white;
+  color: var(--surface-background);
 }
 
 .add-new-crop-btn {
   display: inline-block;
-  background: #2c5530;
-  color: white;
+  background: var(--primary-color);
+  color: var(--surface-background);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -86,16 +86,16 @@ body.myfarms-active {
 }
 
 .add-new-crop-btn:hover {
-  background: #1e3a22;
+  background: var(--secondary-color);
   transform: translateY(-2px);
-  color: white;
-  box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3);
+  color: var(--surface-background);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .add-first-crop-btn {
   display: inline-block;
-  background: #2c5530;
-  color: white;
+  background: var(--primary-color);
+  color: var(--surface-background);
   text-decoration: none;
   padding: 1.5rem 3rem;
   border-radius: 12px;
@@ -106,10 +106,10 @@ body.myfarms-active {
 }
 
 .add-first-crop-btn:hover {
-  background: #1e3a22;
+  background: var(--secondary-color);
   transform: translateY(-3px);
-  color: white;
-  box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3);
+  color: var(--surface-background);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* 3D Container - Full Screen */
@@ -128,20 +128,20 @@ body.myfarms-active {
   position: absolute;
   bottom: 1rem;
   left: 1rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface-background);
   backdrop-filter: blur(10px);
-  border: 2px solid #2c5530;
+  border: 2px solid var(--primary-color);
   border-radius: 12px;
   padding: 0.75rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   z-index: 99; /* Adjusted z-index */
-  color: #333;
+  color: var(--text-primary);
   max-width: 200px;
 }
 
 .legend-3d h4 {
   margin: 0 0 0.5rem 0;
-  color: #2c5530;
+  color: var(--primary-color);
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -157,12 +157,12 @@ body.myfarms-active {
   width: 14px;
   height: 14px;
   border-radius: 4px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-color);
 }
 
 .legend-text {
   font-size: 0.75rem;
-  color: #4b5563;
+  color: var(--text-secondary);
 }
 
 /* Controls Overlay for 3D View */
@@ -170,20 +170,20 @@ body.myfarms-active {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface-background);
   backdrop-filter: blur(10px);
-  border: 2px solid #2c5530;
+  border: 2px solid var(--primary-color);
   border-radius: 12px;
   padding: 0.6rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   z-index: 99; /* Adjusted z-index */
-  color: #333;
+  color: var(--text-primary);
   max-width: 180px;
 }
 
 .controls-overlay-3d h4 {
   margin: 0 0 0.4rem 0;
-  color: #2c5530;
+  color: var(--primary-color);
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -191,12 +191,12 @@ body.myfarms-active {
 .controls-overlay-3d p {
   margin: 0;
   font-size: 0.7rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   line-height: 1.2;
 }
 
 .controls-overlay-3d strong {
-  color: #2c5530;
+  color: var(--primary-color);
 }
 
 /* Farms Stats for 3D View */
@@ -210,30 +210,30 @@ body.myfarms-active {
 }
 
 .stat-card-3d {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface-background);
   backdrop-filter: blur(10px);
-  border: 2px solid #2c5530;
+  border: 2px solid var(--primary-color);
   border-radius: 12px;
   padding: 0.75rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   gap: 0.6rem;
   transition: all 0.3s ease;
-  color: #333;
+  color: var(--text-primary);
   min-width: 100px;
 }
 
 .stat-card-3d:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: #4ade80;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--secondary-color);
 }
 
 .stat-icon {
   font-size: 1.2rem;
-  background: #2c5530;
-  color: white;
+  background: var(--secondary-color);
+  color: var(--surface-background);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -250,13 +250,13 @@ body.myfarms-active {
 .stat-number {
   font-size: 1rem;
   font-weight: 700;
-  color: #2c5530;
+  color: var(--primary-color);
   margin-bottom: 0.2rem;
 }
 
 .stat-label {
   font-size: 0.65rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -320,15 +320,15 @@ body.myfarms-active {
 /* Hover effects for interactive elements */
 .add-new-crop-btn:hover,
 .add-first-crop-btn:hover {
-  background: #1e3a22;
+  background: var(--secondary-color);
   transform: translateY(-2px);
-  color: white;
+  color: var(--surface-background);
 }
 
 /* Focus states for accessibility */
 .add-new-crop-btn:focus,
 .add-first-crop-btn:focus {
-  outline: 2px solid #4ade80;
+  outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 

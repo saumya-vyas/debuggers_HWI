@@ -3,9 +3,20 @@
   line-height: 1.5;
   font-weight: 400;
 
+  /* New Soft & Varied Color Palette */
+  --primary-color: #689F38; /* Earthy Green */
+  --secondary-color: #FFB300; /* Amber */
+  --background-light: #F9FBE7; /* Cream/Off-white */
+  --surface-background: #FFFFFF; /* White */
+  --text-primary: #424242; /* Dark Charcoal */
+  --text-secondary: #757575; /* Medium Grey */
+  --border-color: #E0E0E0; /* Soft Light Grey */
+  --success-color: #8BC34A; /* Lighter Green */
+  --warning-color: #F44336; /* Red */
+
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-primary);
+  background-color: var(--background-light);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,6 +46,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100vh;
   width: 100vw;
+  background-color: var(--background-light); /* Ensure body uses the new light background */
 }
 
 #root {
@@ -51,17 +63,17 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--background-light);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2c5530;
+  background: var(--primary-color);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1e3a22;
+  background: var(--secondary-color);
 }
 
 /* Focus styles for accessibility */
@@ -69,7 +81,7 @@ button:focus,
 input:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid #2c5530;
+  outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 

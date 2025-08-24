@@ -42,7 +42,7 @@ function App() {
       <div className="app">
         <nav className="navbar">
           <div className="nav-brand">
-            <h1>🌾 Farmer Portal</h1>
+            <h1>🌾 AgroMantri</h1>
           </div>
           <div className="nav-links">
             <Link to="/" className="nav-link">Dashboard</Link>
@@ -77,14 +77,12 @@ function App() {
               element={<FarmingChat />} 
             />
           </Routes>
-        </main>
-        <WeatherDemo />
-        
+        </main>        
         {/* Global Footer - Available across all components */}
         <footer className="app-footer">
           <div className="footer-content">
             <div className="footer-section">
-              <h4>🌾 Farmer Portal</h4>
+              <h4>🌾 AgroMantri</h4>
               <p>Your comprehensive digital farming companion</p>
               <p>Powered by AI technology and farming expertise</p>
             </div>
@@ -133,7 +131,7 @@ function App() {
           <div className="footer-bottom">
             <div className="footer-bottom-content">
               <div className="footer-copyright">
-                <p>&copy; 2024 Farmer Portal. All rights reserved.</p>
+                <p>&copy; 2024 AgroMantri. All rights reserved.</p>
                 <p>Built with ❤️ for Indian Farmers</p>
               </div>
               

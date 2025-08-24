@@ -234,28 +234,6 @@ const WeatherDemo = () => {
           ))}
         </div>
       )}
-
-      {/* Raw JSON Data */}
-      <div style={{ 
-        backgroundColor: '#f8f9fa', 
-        padding: '20px', 
-        borderRadius: '8px' 
-      }}>
-        <h2>📋 Raw JSON Data</h2>
-        <details>
-          <summary>Click to view raw data</summary>
-          <pre style={{ 
-            backgroundColor: 'white', 
-            padding: '15px', 
-            borderRadius: '4px',
-            overflow: 'auto',
-            maxHeight: '400px',
-            fontSize: '12px'
-          }}>
-            {JSON.stringify(weatherData, null, 2)}
-          </pre>
-        </details>
-      </div>
     </div>
   );
 };

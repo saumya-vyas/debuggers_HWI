@@ -1,17 +1,17 @@
 .dashboard {
-  color: #333;
+  color: var(--text-primary);
 }
 
 .dashboard-header {
   text-align: center;
   margin-bottom: 3rem;
-  color: white;
+  color: var(--text-primary);
 }
 
 .dashboard-header h2 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
 .dashboard-header p {
@@ -32,8 +32,8 @@
   width: 80%; /* Adjusted width to be slightly less than 100% */
   max-width: 600px; /* Optional: limit max width for very large screens */
   padding: 1.5rem 2rem; /* Make it big */
-  background: #2c5530;
-  color: white;
+  background: var(--primary-color);
+  color: var(--surface-background);
   border: none;
   border-radius: 12px;
   font-size: 1.5rem; /* Make text bigger */
@@ -46,9 +46,9 @@
 
 .add-new-crop-full-width-btn:hover,
 .my-farms-full-width-btn:hover {
-  background: #1e3a22;
+  background: var(--secondary-color);
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .full-width-card {
@@ -68,17 +68,17 @@
 */
 
 .dashboard-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--surface-background);
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
 
 .dashboard-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
@@ -89,14 +89,14 @@
 }
 
 .card-header h3 {
-  color: #2c5530;
+  color: var(--primary-color);
   font-size: 1.4rem;
   margin: 0;
 }
 
 .toggle-btn {
-  background: #2c5530;
-  color: white;
+  background: var(--primary-color);
+  color: var(--surface-background);
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -106,7 +106,7 @@
 }
 
 .toggle-btn:hover {
-  background: #1e3a22;
+  background: var(--secondary-color);
   transform: translateY(-2px);
 }
 
@@ -125,14 +125,14 @@
 
 .form-group label {
   font-weight: 600;
-  color: #2c5530;
+  color: var(--text-primary);
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   padding: 0.75rem;
-  border: 2px solid #e1e5e9;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
@@ -142,13 +142,13 @@
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #2c5530;
-  box-shadow: 0 0 0 3px rgba(44, 85, 48, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(104, 159, 56, 0.1);
 }
 
 .submit-btn {
-  background: #2c5530;
-  color: white;
+  background: var(--primary-color);
+  color: var(--surface-background);
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -159,7 +159,7 @@
 }
 
 .submit-btn:hover {
-  background: #1e3a22;
+  background: var(--secondary-color);
   transform: translateY(-2px);
 }
 
@@ -178,10 +178,10 @@
   flex-shrink: 0; /* Prevent items from shrinking */
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid #e1e5e9;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   margin-right: 0.5rem; /* Use margin-right instead of margin-bottom */
-  background: #f8f9fa;
+  background: var(--surface-background);
   transition: all 0.3s ease;
 }
 
@@ -190,13 +190,13 @@
 }
 
 .activity-item:hover {
-  background: #e9ecef;
+  background: #f0f0f0; /* A neutral hover for activity items */
   transform: translateX(0); /* Removed horizontal transform on hover for horizontal scroll */
 }
 
 .activity-date {
-  background: #2c5530;
-  color: white;
+  background: var(--primary-color);
+  color: var(--surface-background);
   padding: 0.25rem 0.75rem;
   border-radius: 6px;
   font-size: 0.9rem;
@@ -216,7 +216,7 @@
 
 .activity-farm {
   font-size: 0.9rem;
-  color: #6c757d;
+  color: var(--text-secondary);
   font-style: italic;
 }
 
@@ -230,29 +230,29 @@
 .stat-item {
   text-align: center;
   padding: 1rem;
-  background: #f8f9fa;
+  background: var(--surface-background);
   border-radius: 8px;
-  border: 1px solid #e1e5e9;
+  border: 1px solid var(--border-color);
 }
 
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
-  color: #2c5530;
+  color: var(--primary-color);
   margin-bottom: 0.5rem;
 }
 
 .stat-label {
   font-size: 0.9rem;
-  color: #6c757d;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 /* My Farms Button */
 .my-farms-btn {
   display: inline-block;
-  background: #2c5530;
-  color: white;
+  background: var(--primary-color);
+  color: var(--surface-background);
   text-decoration: none;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -263,9 +263,9 @@
 }
 
 .my-farms-btn:hover {
-  background: #1e3a22;
+  background: var(--secondary-color);
   transform: translateY(-2px);
-  color: white;
+  color: var(--surface-background);
 }
 
 /* Responsive Design */
@@ -288,4 +288,26 @@
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.satellite-image-container {
+  margin-top: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.satellite-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-caption {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
 }
