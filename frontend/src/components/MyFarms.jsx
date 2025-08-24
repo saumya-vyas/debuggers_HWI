@@ -52,6 +52,7 @@ const MyFarms = ({ crops }) => {
         <FarmField3D 
           farms={displayFarms} 
           onFarmClick={handleFarmClick}
+          scale={1.2} /* Increased scale for larger farm */
         />
         
         {/* 3D View Legend */}

@@ -117,8 +117,8 @@ body.myfarms-active {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 120%; /* Increased width */
+  height: 120%; /* Increased height */
   background: #ffffff;
   z-index: 1;
 }
