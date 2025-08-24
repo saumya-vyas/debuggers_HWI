@@ -19,12 +19,53 @@
   opacity: 0.9;
 }
 
+.dashboard-actions {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center; /* Center the button */
+}
+
+.add-new-crop-full-width-btn,
+.my-farms-full-width-btn {
+  display: block; /* Make it block level to take full width */
+  width: 80%; /* Adjusted width to be slightly less than 100% */
+  max-width: 600px; /* Optional: limit max width for very large screens */
+  padding: 1.5rem 2rem; /* Make it big */
+  background: #2c5530;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.5rem; /* Make text bigger */
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none; /* For the Link component */
+}
+
+.add-new-crop-full-width-btn:hover,
+.my-farms-full-width-btn:hover {
+  background: #1e3a22;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3);
+}
+
+.full-width-card {
+  width: 100%;
+  max-width: 800px; /* Adjust as needed */
+  margin: 0 auto 2rem auto; /* Center the card and add bottom margin */
+}
+
+/* Removed .dashboard-grid as it's no longer used for the main layout */
+/*
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
   margin-bottom: 2rem;
 }
+*/
 
 .dashboard-card {
   background: rgba(255, 255, 255, 0.95);
@@ -126,23 +167,31 @@
 .activities-list {
   margin-top: 1.5rem;
   max-height: 300px;
-  overflow-y: auto;
+  overflow-x: auto; /* Changed to horizontal overflow */
+  overflow-y: hidden; /* Hide vertical overflow if only horizontal is desired */
+  white-space: nowrap; /* Prevent items from wrapping */
+  padding-bottom: 10px; /* Add some padding for scrollbar visibility */
 }
 
 .activity-item {
-  display: flex;
+  display: inline-flex; /* Changed to inline-flex for horizontal layout */
+  flex-shrink: 0; /* Prevent items from shrinking */
   gap: 1rem;
   padding: 1rem;
   border: 1px solid #e1e5e9;
   border-radius: 8px;
-  margin-bottom: 0.5rem;
+  margin-right: 0.5rem; /* Use margin-right instead of margin-bottom */
   background: #f8f9fa;
   transition: all 0.3s ease;
 }
 
+.activity-item:last-child {
+  margin-right: 0; /* Remove margin for the last item */
+}
+
 .activity-item:hover {
   background: #e9ecef;
-  transform: translateX(5px);
+  transform: translateX(0); /* Removed horizontal transform on hover for horizontal scroll */
 }
 
 .activity-date {

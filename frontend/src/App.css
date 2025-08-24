@@ -14,7 +14,7 @@ html, body {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #ffffff;
+  background: transparent; /* Changed to transparent to allow Canvas background to show */
   min-height: 100vh;
   color: #333;
   margin: 0;

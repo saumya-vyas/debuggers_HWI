@@ -1,7 +1,7 @@
 /* Full 3D World MyFarms Page - No Scrolling */
 .my-farms-3d {
   color: #333;
-  background: #ffffff;
+  background: transparent; /* Changed background to transparent */
   height: 100vh;
   width: 100vw;
   padding: 0;
@@ -24,7 +24,7 @@ body.myfarms-active {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  z-index: 1000;
+  z-index: 99; /* Adjusted z-index */
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   border: 2px solid #2c5530;
@@ -60,7 +60,7 @@ body.myfarms-active {
   border-radius: 8px;
   padding: 0.5rem 1rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 99; /* Adjusted z-index */
   color: white;
   text-align: center;
   max-width: 90vw;
@@ -119,7 +119,7 @@ body.myfarms-active {
   left: 0;
   width: 120%; /* Increased width */
   height: 120%; /* Increased height */
-  background: #ffffff;
+  background: transparent; /* Changed background to transparent */
   z-index: 1;
 }
 
@@ -134,7 +134,7 @@ body.myfarms-active {
   border-radius: 12px;
   padding: 0.75rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 99; /* Adjusted z-index */
   color: #333;
   max-width: 200px;
 }
@@ -176,7 +176,7 @@ body.myfarms-active {
   border-radius: 12px;
   padding: 0.6rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 99; /* Adjusted z-index */
   color: #333;
   max-width: 180px;
 }
@@ -206,7 +206,7 @@ body.myfarms-active {
   right: 1rem;
   display: flex;
   gap: 0.75rem;
-  z-index: 1000;
+  z-index: 99; /* Adjusted z-index */
 }
 
 .stat-card-3d {
