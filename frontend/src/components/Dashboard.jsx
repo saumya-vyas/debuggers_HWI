@@ -52,53 +52,17 @@ const Dashboard = ({ crops, activities }) => {
       <div className="dashboard-grid">
         <div className="dashboard-card">
           <div className="card-header">
-            <h3>🌱 Add New Crop</h3>
-            <div className="card-actions">
-              <Link to="/add-crop" className="toggle-btn">
-                Add Crop
-              </Link>
-            </div>
+            <h3>🌾 Add New Crop</h3>
           </div>
           <p className="card-description">Add a new crop to your farming portfolio</p>
-        </div>
-
-        <div className="dashboard-card">
-          <div className="card-header">
-            <h3>📅 7-Day Activity</h3>
-            <div className="card-actions">
-              <Link to="/add-activity" className="toggle-btn">
-                Add Activity
-              </Link>
-              <Link to="/activities" className="toggle-btn secondary">
-                View All
-              </Link>
-            </div>
-          </div>
-          <div className="activities-list">
-            {activities && activities.length > 0 ? (
-              activities.slice(0, 3).map((activity, index) => (
-                <div key={index} className="activity-item">
-                  <span className="activity-date">{activity.date}</span>
-                  <div className="activity-content">
-                    <div className="activity-text">{activity.description}</div>
-                    <div className="activity-farm">{activity.farm}</div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p className="no-activities">No activities recorded yet</p>
-            )}
-          </div>
+          <Link to="/add-crop" className="my-farms-btn">
+            Add Crop
+          </Link>
         </div>
 
         <div className="dashboard-card">
           <div className="card-header">
             <h3>📊 Quick Stats</h3>
-            <div className="card-actions">
-              <Link to="/stats" className="toggle-btn">
-                View Details
-              </Link>
-            </div>
           </div>
           <div className="stats-grid">
             <div className="stat-item">
@@ -114,6 +78,9 @@ const Dashboard = ({ crops, activities }) => {
               <div className="stat-label">Excellent Health</div>
             </div>
           </div>
+          <Link to="/stats" className="my-farms-btn">
+            View Details
+          </Link>
         </div>
 
         <div className="dashboard-card">
@@ -124,6 +91,36 @@ const Dashboard = ({ crops, activities }) => {
           <Link to="/my-farms" className="my-farms-btn">
             View My Farms
           </Link>
+        </div>
+      </div>
+
+      {/* 7-Day Activity Section */}
+      <div className="analytics-section">
+        <h3 className="section-title">📅 7-Day Activity Overview</h3>
+        <div className="analytics-grid">
+          <div className="analytics-card activity-overview-card">
+            <div className="card-header">
+              <h3>📅 Recent Activities</h3>
+            </div>
+            <div className="activities-list">
+              {activities && activities.length > 0 ? (
+                activities.slice(0, 5).map((activity, index) => (
+                  <div key={index} className="activity-item">
+                    <span className="activity-date">{activity.date}</span>
+                    <div className="activity-content">
+                      <div className="activity-text">{activity.description}</div>
+                      <div className="activity-farm">{activity.farm}</div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="no-activities">No activities recorded yet</p>
+              )}
+            </div>
+            <Link to="/add-activity" className="my-farms-btn">
+              Add Activity
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -186,7 +183,7 @@ const Dashboard = ({ crops, activities }) => {
           {/* Market Trends */}
           <div className="analytics-card market-card">
             <div className="card-header">
-              <h3>📈 Market Trends</h3>
+              <h3>💰 Market Trends</h3>
               <span className="market-update">Live</span>
             </div>
             <div className="market-content">

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import './Stats.css'
 
-const Stats = ({ crops, activities }) => {
+const Stats = ({ crops = [], activities = [] }) => {
   // Calculate detailed statistics
   const totalFarms = crops.length
   const totalActivities = activities.length
@@ -183,16 +183,17 @@ const Stats = ({ crops, activities }) => {
         <div className="stats-section">
           <h3>🕒 Recent Activities</h3>
           <div className="recent-activities">
-            {recentActivities.map(activity => (
-              <div key={activity.id} className="recent-activity">
-                <div className="activity-date">{activity.date}</div>
-                <div className="activity-content">
-                  <div className="activity-text">{activity.activity}</div>
-                  <div className="activity-farm">📍 {activity.farmName}</div>
+            {recentActivities.length > 0 ? (
+              recentActivities.map(activity => (
+                <div key={activity.id} className="recent-activity">
+                  <div className="activity-date">{activity.date}</div>
+                  <div className="activity-content">
+                    <div className="activity-text">{activity.activity}</div>
+                    <div className="activity-farm">📍 {activity.farmName}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
-            {recentActivities.length === 0 && (
+              ))
+            ) : (
               <p className="no-activities">No recent activities</p>
             )}
           </div>
