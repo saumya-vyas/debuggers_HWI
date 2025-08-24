@@ -1,10 +1,13 @@
 import { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { OrbitControls, useTexture, Html, useGLTF } from '@react-three/drei'
+import { Grid } from '@react-three/drei' /* Added Grid import */
+import { easing } from 'maath' /* Corrected import for easing */
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { MeshStandardMaterial } from 'three' // Keep MeshStandardMaterial for default assignments
 import './FarmField3D.css'
+import * as THREE from 'three' /* Corrected import for THREE */
 
 // Individual farm field component - custom rounded rectangular cube
 const FarmField = ({ farm, position, onClick, isHovered, setIsHovered, rotation = [0, 0, 0] }) => {
@@ -110,6 +113,12 @@ const Tree = ({ model, position, scale = 0.05 }) => {
   )
 }
 
+const Windmill = ({ model, position, scale = 1, rotation = [0, 0, 0] }) => {
+  return (
+    <primitive object={model.scene.clone()} position={position} rotation={rotation} scale={[scale, scale, scale]} />
+  )
+}
+
 const Fence = ({ model, position, rotation = [0, Math.PI/2, 0], scale = 1 }) => {
   return (
     <primitive object={model.scene.clone()} position={position} rotation={rotation} scale={[scale, scale, scale]} />
@@ -119,6 +128,7 @@ const Fence = ({ model, position, rotation = [0, Math.PI/2, 0], scale = 1 }) => 
 // Main 3D scene component
 const FarmFieldScene = ({ farms, onFarmClick }) => {
   const [hoveredFarm, setHoveredFarm] = useState(null)
+  const groupRef = useRef() /* Added ref for main group */
 
   // Calculate 3x3 grid positions for farms
   const getFarmPositions = (farms) => {
@@ -157,7 +167,18 @@ const FarmFieldScene = ({ farms, onFarmClick }) => {
   })
 
   const fenceModel = useGLTF('/fence.glb')
+  const windmillModel = useGLTF('/windmill.glb') /* Load the windmill GLTF model */
   const landTexture = useTexture('/land2.jpg') /* Load the land texture */
+  const planeFieldTexture = useTexture('/planeField.png') /* Load the planeField texture for background */
+
+  // Configure land texture for repetition
+  useEffect(() => {
+    if (landTexture) {
+      landTexture.wrapS = landTexture.wrapT = THREE.RepeatWrapping
+      landTexture.repeat.set(10, 10) // Repeat 10 times in both directions
+      landTexture.needsUpdate = true
+    }
+  }, [landTexture])
 
   // Ensure materials are updated and shadows are cast/received for the tree model
   useEffect(() => {
@@ -178,21 +199,52 @@ const FarmFieldScene = ({ farms, onFarmClick }) => {
         if (child.isMesh) {
           child.castShadow = true
           child.receiveShadow = true
-          // Always assign a brown MeshStandardMaterial to ensure consistent color
-          child.material = new MeshStandardMaterial({ color: 0x8B4513 }) // Brown color for fence
+          // Explicitly assign a neutral MeshStandardMaterial to ensure consistent color
+          child.material = new MeshStandardMaterial({ color: 0xcccccc }) // Light grey color for fence
           child.material.needsUpdate = true
-          console.log('Assigned brown MeshStandardMaterial to fence part.')
+          console.log('Assigned light grey MeshStandardMaterial to fence part.')
         }
       })
     }
   }, [fenceModel])
 
+  // Apply easing for scene rotation based on pointer movement
+  useFrame((state, delta) => {
+    if (groupRef.current) {
+      easing.dampE(
+        groupRef.current.rotation,
+        [-state.pointer.y / 20, -state.pointer.x / 20, 0],
+        0.4,
+        delta
+      )
+    }
+  })
+
   return (
-    <group>
-      {/* Ground plane */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-35, -0.05, -25]}>
-        <planeGeometry args={[150, 150]} />
-        <meshStandardMaterial map={landTexture} /> {/* Apply land texture */}
+    <group ref={groupRef}> {/* Added ref to main group */}
+      {/* Replaced Ground plane with Infinite Grid */}
+      <Grid
+        renderOrder={-1} /* Render behind other objects */
+        position={[0, -0.01, 0]} /* Position slightly below other objects */
+        infiniteGrid
+        fadeDistance={100} /* Fade out distance */
+        fadeStrength={1} /* Fade strength */
+        sectionSize={4} /* Size of each section */
+        sectionColor={'#90EE90'} /* Light green color */
+        sectionThickness={1} /* Thickness of section lines */
+        cellColor={'#B0E0E6'} /* Lighter color for grid cells */
+        cellThickness={0.5} /* Thickness of cell lines */
+        followCamera={false}
+      />
+
+      {/* Background Plane with Image below the grid */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]} renderOrder={-2}>
+        <planeGeometry args={[200, 200]} /> {/* Large plane to cover the background */}
+        <meshStandardMaterial 
+          map={planeFieldTexture}
+          transparent={true} /* Enable transparency */
+          opacity={0.6} /* Set opacity to 0.6 */
+        />
       </mesh>
 
       {/* Roads */}
@@ -212,19 +264,30 @@ const FarmFieldScene = ({ farms, onFarmClick }) => {
 
       {/* Trees along the road */}
       <Tree 
+        key="tree-1" /* Added key prop */
         model={treeModel}
         position={[-16 - 6, 0, 6]} /* First tree position */
         scale={0.3}
       />
       <Tree 
+        key="tree-2" /* Added key prop */
         model={treeModel}
         position={[-16 - 6, 0,  13]} /* Second tree position, side by side */
         scale={0.4}
       />
 
+      {/* Windmill beside the trees */}
+      <Windmill
+        model={windmillModel}
+        position={[-16 - 10, 0, -6]} /* Position next to the trees */
+        rotation={[0, Math.PI / 2 + 0.5, 0]} /* Rotated 45 degrees on Y-axis */
+        scale={0.15} /* Adjusted scale for windmill model */
+      />
+
       {/* Fences around the grid */}
       {/* Front fence */}
       <Fence 
+        key="fence-front" /* Added key prop */
         model={fenceModel} 
         position={[0, 1, 13]} 
         scale={1.0} 
@@ -232,6 +295,7 @@ const FarmFieldScene = ({ farms, onFarmClick }) => {
       />
       {/* Back fence */}
       <Fence 
+        key="fence-back" /* Added key prop */
         model={fenceModel} 
         position={[0, 1, -13]} 
         scale={1.0} 
@@ -239,6 +303,7 @@ const FarmFieldScene = ({ farms, onFarmClick }) => {
       />
       {/* Left fence */}
       <Fence 
+        key="fence-left" /* Added key prop */
         model={fenceModel} 
         position={[-11, 1, 0]} 
         scale={1.0} 
@@ -246,8 +311,9 @@ const FarmFieldScene = ({ farms, onFarmClick }) => {
       />
       {/* Right fence */}
       <Fence 
+        key="fence-right" /* Added key prop */
         model={fenceModel} 
-        position={[11, 1, 0]} 
+        position={[13, 1, 0]} 
         scale={1.0} 
         rotation={[0, 0, 0]} /* Rotate 90 degrees */
       />
@@ -315,7 +381,7 @@ const GridLines = () => {
                 itemSize={3}
               />
             </bufferGeometry>
-            <lineBasicMaterial color="#1a1a1a" linewidth={2} opacity={0.5} transparent />
+            <lineBasicMaterial color="#000000" linewidth={6} opacity={1.0} transparent />
           </line>
         )
       })}
@@ -333,7 +399,7 @@ const GridLines = () => {
                 itemSize={3}
               />
             </bufferGeometry>
-            <lineBasicMaterial color="#1a1a1a" linewidth={2} opacity={0.5} transparent />
+            <lineBasicMaterial color="#000000" linewidth={6} opacity={1.0} transparent />
           </line>
         )
       })}
@@ -348,18 +414,11 @@ const FarmField3D = ({ farms, onFarmClick, scale = 1 }) => {
       <Canvas
         camera={{ position: [15, 15, 15], fov: 60 }}
         shadows
-        style={{ background: '#ffffff' }}
+        style={{ background: 'transparent' }} /* Changed Canvas background to transparent for image background */
         scale={[scale, scale, scale]} /* Apply scale transform */
       >
         <FarmFieldScene farms={farms} onFarmClick={onFarmClick} />
-        <OrbitControls
-          enablePan={true}
-          enableZoom={true}
-          enableRotate={true}
-          maxPolarAngle={Math.PI / 2.5}
-          minDistance={8}
-          maxDistance={50}
-        />
+        <OrbitControls/>
       </Canvas>
     </div>
   )
