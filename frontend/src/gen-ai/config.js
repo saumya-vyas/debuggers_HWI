@@ -77,7 +77,7 @@ ${JSON.stringify(farmerData, null, 2)}
 Please provide your analysis in the exact format specified above.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.0",
       contents: prompt,
     });
     
