@@ -11,6 +11,8 @@ const AddCrop = ({ onAddCrop }) => {
     sowingDate: ''
   })
 
+  const cropTypes = ['Wheat', 'Corn', 'Soybeans', 'Rice']
+
   const handleCropSubmit = (e) => {
     e.preventDefault()
     onAddCrop(newCrop)
@@ -53,14 +55,19 @@ const AddCrop = ({ onAddCrop }) => {
           
           <div className="form-group">
             <label htmlFor="cropType">Crop Type:</label>
-            <input
-              type="text"
+            <select
               id="cropType"
               value={newCrop.cropType}
               onChange={(e) => setNewCrop({...newCrop, cropType: e.target.value})}
               required
-              placeholder="Enter crop type"
-            />
+            >
+              <option value="">Select crop type</option>
+              {cropTypes.map((crop) => (
+                <option key={crop} value={crop}>
+                  {crop}
+                </option>
+              ))}
+            </select>
           </div>
           
           <div className="form-group">
